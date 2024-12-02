@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World</title>
+    <style>
+        /* Snowflakes Styling */
+        .snowflake {
+            position: fixed; /* Keep the snowflakes in place even when scrolling */
+            top: -10px;
+            color: #fff;
+            font-size: 1.5em;
+            opacity: 0.8;
+            user-select: none;
+            pointer-events: none;
+            z-index: -1; /* Ensure snowflakes are behind the content */
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                top: -10px;
+            }
+            100% {
+                top: 100vh;
+            }
+        }
+
+        /* Basic styling for the rest of the page */
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            margin: 0;
+            background-color: #3c8d0d;
+            padding-bottom: 100px;
+            overflow: auto; /* Ensure the page content is scrollable */
+        }
+
+        .content, .image-container, video {
+            z-index: 10; /* Make sure the content, image, and video are above snowflakes */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="content" style="text-align: center;">
+        <h1 style="margin-top: 20px; font-size: 4em; color: white; text-decoration: underline;">Hello, World!</h1>
+        <p style="font-size: 1.5em; color: white; margin-top: 10px;">Hello Shea! This is a website I made that serves <br> as a rough template of what your QR code could lead to.</p>
+        <!-- New text below the first paragraph -->
+        <p style="font-size: 1.5em; color: white; margin-top: 10px;">
+            You could say here:<br> 
+            "<strong>The Town is currently on display at So and So charter school!</strong>"
+        </p>
+        
+    </div>
+
+    <!-- Adjusted Image Size -->
+    <div class="image-container" style="margin-top: 30px; width: 80%; max-width: 600px; text-align: center;">
+        <img src="christmasTree.jpg" alt="Christmas Tree" style="max-width: 70%; height: auto;">
+        <!-- Text below the image -->
+        <p style="font-size: 1.5em; color: white; margin-top: 20px;">You could put a caption here beneath a photo</p>
+    </div>
+
+    <!-- Add video below the image -->
+    <div style="margin-top: 30px; width: 80%; max-width: 600px; text-align: center;">
+        <video width="100%" controls style="border: 5px solid #fff; border-radius: 10px;">
+            <source src="treeVideo.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <!-- Text below the video -->
+        <p style="font-size: 1.5em; color: white; margin-top: 20px;">You could put a caption here beneath the video</p>
+    </div>
+
+    <script>
+        // Function to create and animate snowflakes
+        function createSnowflakes() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.textContent = '❄'; // Snowflake emoji
+            document.body.appendChild(snowflake);
+
+            // Random position for each snowflake
+            const startPosition = Math.random() * window.innerWidth;
+            const animationDuration = Math.random() * 3 + 2; // Between 2 and 5 seconds
+            snowflake.style.left = `${startPosition}px`;
+            snowflake.style.animationDuration = `${animationDuration}s`;
+
+            // Remove the snowflake once it's finished falling
+            snowflake.addEventListener('animationiteration', () => {
+                snowflake.remove();
+            });
+        }
+
+        // Create a new snowflake every 100ms
+        setInterval(createSnowflakes, 100);
+    </script>
+
+</body>
+</html>
